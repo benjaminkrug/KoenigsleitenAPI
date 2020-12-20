@@ -29,16 +29,16 @@
         [Authorize]
         public async Task<IActionResult> Secret()
         {
-            //var accessToken = await HttpContext.GetTokenAsync("access_token");
-            //var idToken = await HttpContext.GetTokenAsync("id_token");
-            //var refreshToken = await HttpContext.GetTokenAsync("refresh_token");
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var idToken = await HttpContext.GetTokenAsync("id_token");
+            var refreshToken = await HttpContext.GetTokenAsync("refresh_token");
 
-            //var claims = User.Claims.ToList();
-            //var _idToken = new JwtSecurityTokenHandler().ReadJwtToken(idToken);
-            //var _accessToken = new JwtSecurityTokenHandler().ReadJwtToken(accessToken);
+            var claims = User.Claims.ToList();
+            var _idToken = new JwtSecurityTokenHandler().ReadJwtToken(idToken);
+            var _accessToken = new JwtSecurityTokenHandler().ReadJwtToken(accessToken);
 
             //var result = await GetSectret(accessToken);
-            //await RefreshAccessToken();
+            await RefreshAccessToken();
 
             return View();
         }
@@ -64,7 +64,7 @@
         public async Task RefreshAccessToken()
         {
             var serverClient = _httpClientFactory.CreateClient();
-            var discoveryDocument = await serverClient.GetDiscoveryDocumentAsync("https://localhost:44354/");
+            var discoveryDocument = await serverClient.GetDiscoveryDocumentAsync("https://identityserverkoenigsleiten-dev-as.azurewebsites.net/");
 
             var accessToken = await HttpContext.GetTokenAsync("access_token");
             var idToken = await HttpContext.GetTokenAsync("id_token");
