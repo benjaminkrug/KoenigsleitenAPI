@@ -64,6 +64,8 @@
         public async Task RefreshAccessToken()
         {
             var serverClient = _httpClientFactory.CreateClient();
+            // local security server url => localhost:44367
+            // azure security url =>identityserverkoenigsleiten-dev-as.azurewebsites.net
             var discoveryDocument = await serverClient.GetDiscoveryDocumentAsync("https://identityserverkoenigsleiten-dev-as.azurewebsites.net/");
 
             var accessToken = await HttpContext.GetTokenAsync("access_token");

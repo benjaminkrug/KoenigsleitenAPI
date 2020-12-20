@@ -24,6 +24,8 @@ namespace KoenigsleitenAPI
                 .AddCookie("Cookie")
                 .AddOpenIdConnect("oidc", config =>
                 {
+                    // local security server url => localhost:44367
+                    // azure security url =>identityserverkoenigsleiten-dev-as.azurewebsites.net
                     config.Authority = "https://identityserverkoenigsleiten-dev-as.azurewebsites.net/";
                     config.ClientId = "client_id_mvc";
                     config.ClientSecret = "client_secret_mvc";
